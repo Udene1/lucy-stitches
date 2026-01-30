@@ -1,4 +1,6 @@
-# TailorPro is a premium, AI-powered workshop management system designed for bespoke tailoring businesses. Originally built for Lucy Stitches in Onitsha, Anambra State, Nigeria.
+# TailorPro Workshop Management System
+
+Premium web application for tailoring businesses in Onitsha, Anambra State, Nigeria.
 
 ## 🚀 Getting Started
 
@@ -9,7 +11,7 @@
 
 2. **Supabase Setup**:
    - Create a project on [Supabase](https://supabase.com).
-   - Run the SQL contents from `src/lib/supabase/schema.sql` (found in the root/setup folder or previously generated) in the Supabase SQL Editor.
+   - Run the SQL contents from `src/lib/supabase/schema.sql` in the Supabase SQL Editor.
    - Enabling RLS is highly recommended for production.
 
 3. **Environment**:
