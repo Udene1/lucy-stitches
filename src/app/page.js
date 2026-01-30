@@ -19,8 +19,8 @@ import { cn } from '@/lib/utils'
 
 const services = [
     {
-        title: 'Bespoke Tailoring',
-        desc: 'Custom-made Agbadas, Suits, and Kaftans tailored to your exact measurements.',
+        title: 'Classics & Office',
+        desc: 'Sharp, professional, and timeless bespoke suits and corporate wear for the modern professional.',
         icon: Scissors,
         color: 'text-emerald-600',
         bg: 'bg-emerald-50',
@@ -162,28 +162,28 @@ export default function LandingPage() {
                         <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mb-10">
                             <Scissors className="w-8 h-8 text-brand-emerald" />
                         </div>
-                        <h3 className="text-5xl font-black text-gray-900 uppercase tracking-tighter mb-8 italic">Bespoke <br /> Craftsmanship</h3>
+                        <h3 className="text-5xl font-black text-gray-900 uppercase tracking-tighter mb-8 italic">Classics & <br /> Office Wear</h3>
                         <div className="space-y-6 text-gray-600 font-medium">
-                            <p>Our bespoke tailoring is more than just sewing; it's an architectural journey for your wardrobe. We specialize in Nigerian traditional attire, from well-structured Agbadas to perfectly fitted Kaftans.</p>
+                            <p>Command every room with attire that speaks of confidence and precision. Our Classics & Office line is designed for the professional who values timeless style and an impeccable fit.</p>
                             <ul className="space-y-4">
                                 <li className="flex items-center gap-3">
                                     <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
-                                    <span>Precision body measurements for a zero-adjustment fit.</span>
+                                    <span>Tailored Corporate Suits & Blazers.</span>
                                 </li>
                                 <li className="flex items-center gap-3">
                                     <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
-                                    <span>Premium fabric selection including high-grade cotton and silk.</span>
+                                    <span>Precision-cut Official Trousers & Skirts.</span>
                                 </li>
                                 <li className="flex items-center gap-3">
                                     <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
-                                    <span>Traditional embroidery patterns with a modern luxury finish.</span>
+                                    <span>High-performance fabrics that resist wrinkles through the workday.</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div className="aspect-square bg-emerald-50 rounded-[3rem] overflow-hidden relative">
-                        <img src="/logo.png" alt="Tailoring Craft" className="w-full h-full object-cover opacity-20 p-20 grayscale" />
-                        <div className="absolute inset-0 flex items-center justify-center text-4xl font-black text-brand-emerald/10 uppercase tracking-widest -rotate-45">Perfect Fit</div>
+                        <img src="/logo.png" alt="Office Wear" className="w-full h-full object-cover opacity-20 p-20 grayscale" />
+                        <div className="absolute inset-0 flex items-center justify-center text-4xl font-black text-brand-emerald/10 uppercase tracking-widest -rotate-45">Office Ready</div>
                     </div>
                 </div>
             </section>
