@@ -23,21 +23,24 @@ const services = [
         desc: 'Custom-made Agbadas, Suits, and Kaftans tailored to your exact measurements.',
         icon: Scissors,
         color: 'text-emerald-600',
-        bg: 'bg-emerald-50'
+        bg: 'bg-emerald-50',
+        id: 'bespoke'
     },
     {
         title: 'Bridal & Occasions',
         desc: 'Exquisite gowns and traditional wear for your most memorable celebrations.',
         icon: Sparkles,
         color: 'text-amber-600',
-        bg: 'bg-amber-50'
+        bg: 'bg-amber-50',
+        id: 'bridal'
     },
     {
         title: 'AI Design Suggestions',
         desc: 'Visualize your dream outfit with our integrated fashion AI generator.',
         icon: Zap,
         color: 'text-blue-600',
-        bg: 'bg-blue-50'
+        bg: 'bg-blue-50',
+        id: 'ai-design'
     }
 ]
 
@@ -54,7 +57,7 @@ export default function LandingPage() {
     }
 
     return (
-        <div className="min-h-screen bg-white font-sans selection:bg-brand-emerald selection:text-white">
+        <div className="min-h-screen bg-white font-sans selection:bg-brand-emerald selection:text-white scroll-smooth">
             {/* Navigation */}
             <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -86,7 +89,7 @@ export default function LandingPage() {
                     <div className="max-w-3xl">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 text-brand-emerald text-xs font-black uppercase tracking-widest rounded-full mb-6">
                             <Star className="w-3 h-3 fill-current" />
-                            Premier Tailoring in Port Harcourt
+                            Premier Tailoring in Onitsha
                         </div>
                         <h1 className="text-6xl md:text-8xl font-black text-gray-900 leading-[0.9] tracking-tighter mb-8 uppercase">
                             Crafting <span className="text-brand-emerald italic">Elegance</span> <br />
@@ -140,11 +143,86 @@ export default function LandingPage() {
                                 <p className="text-gray-500 font-medium leading-relaxed mb-6">
                                     {s.desc}
                                 </p>
-                                <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-brand-emerald cursor-pointer group-hover:gap-4 transition-all">
+                                <Link
+                                    href={`#${s.id}`}
+                                    className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-brand-emerald cursor-pointer group-hover:gap-4 transition-all"
+                                >
                                     Learn More <ChevronRight className="w-4 h-4" />
-                                </div>
+                                </Link>
                             </div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Detailed Brand Sections */}
+            <section id="bespoke" className="py-32 bg-white border-y border-gray-50">
+                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mb-10">
+                            <Scissors className="w-8 h-8 text-brand-emerald" />
+                        </div>
+                        <h3 className="text-5xl font-black text-gray-900 uppercase tracking-tighter mb-8 italic">Bespoke <br /> Craftsmanship</h3>
+                        <div className="space-y-6 text-gray-600 font-medium">
+                            <p>Our bespoke tailoring is more than just sewing; it's an architectural journey for your wardrobe. We specialize in Nigerian traditional attire, from well-structured Agbadas to perfectly fitted Kaftans.</p>
+                            <ul className="space-y-4">
+                                <li className="flex items-center gap-3">
+                                    <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
+                                    <span>Precision body measurements for a zero-adjustment fit.</span>
+                                </li>
+                                <li className="flex items-center gap-3">
+                                    <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
+                                    <span>Premium fabric selection including high-grade cotton and silk.</span>
+                                </li>
+                                <li className="flex items-center gap-3">
+                                    <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
+                                    <span>Traditional embroidery patterns with a modern luxury finish.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="aspect-square bg-emerald-50 rounded-[3rem] overflow-hidden relative">
+                        <img src="/logo.png" alt="Tailoring Craft" className="w-full h-full object-cover opacity-20 p-20 grayscale" />
+                        <div className="absolute inset-0 flex items-center justify-center text-4xl font-black text-brand-emerald/10 uppercase tracking-widest -rotate-45">Perfect Fit</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bridal" className="py-32 bg-gray-50/30">
+                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+                    <div className="order-2 md:order-1 aspect-[4/5] bg-amber-50 rounded-[3rem] overflow-hidden relative">
+                        <div className="absolute inset-0 flex items-center justify-center text-8xl font-black text-brand-gold/5 uppercase tracking-widest rotate-90">ROYALTY</div>
+                    </div>
+                    <div className="order-1 md:order-2">
+                        <div className="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mb-10">
+                            <Sparkles className="w-8 h-8 text-brand-gold" />
+                        </div>
+                        <h3 className="text-5xl font-black text-gray-900 uppercase tracking-tighter mb-8 italic">Bridal & <br /> Regal Wear</h3>
+                        <div className="space-y-6 text-gray-600 font-medium">
+                            <p>For life's most golden moments, we provide attire that radiates royalty. Every piece in our bridal collection is handcrafted with painstaking attention to detail, ensuring you are the centerpiece of your celebration.</p>
+                            <p>We work closely with brides and celebrants to translate their dreams into exquisite silk, lace, and velvet realities. From traditional wedding guest ensembles to the most complex bridal gowns.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ai-design" className="py-32 bg-white">
+                <div className="max-w-7xl mx-auto px-6 text-center">
+                    <div className="w-20 h-20 bg-blue-50 rounded-[2rem] flex items-center justify-center mx-auto mb-10">
+                        <Zap className="w-10 h-10 text-blue-600" />
+                    </div>
+                    <h3 className="text-5xl md:text-6xl font-black text-gray-900 uppercase tracking-tighter mb-8 italic">Future of Fashion <br /> Powered by AI</h3>
+                    <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto mb-16">
+                        Describe your dream outfit in plain words, and our integrated AI will generate a visualization.
+                        No more guessing—see your designs before we even cut the fabric.
+                    </p>
+                    <div className="inline-flex flex-col items-center gap-4">
+                        <div className="p-8 bg-gray-50 rounded-[2.5rem] border border-gray-100 shadow-xl max-w-md italic font-serif text-2xl text-gray-400">
+                            "A structured emerald green buba with gold filigree patterns and a modern tailored collar..."
+                        </div>
+                        <Link href="/portfolio" className="text-brand-emerald font-black uppercase tracking-widest text-sm hover:underline">
+                            See AI-Generated Samples in Portfolio →
+                        </Link>
                     </div>
                 </div>
             </section>
