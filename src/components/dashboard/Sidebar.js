@@ -28,10 +28,13 @@ export default function Sidebar() {
     return (
         <div className="flex flex-col w-64 h-screen bg-brand-emerald text-white border-r border-white/10 shadow-xl overflow-y-auto">
             <div className="p-6 flex items-center gap-3">
-                <div className="p-2 bg-brand-gold rounded-xl">
-                    <Scissors className="w-6 h-6" />
+                <div className="w-10 h-10 bg-white rounded-xl overflow-hidden shadow-lg shadow-emerald-950/20">
+                    <img src="/logo.png" alt="Lucy Stitches" className="w-full h-full object-cover" />
                 </div>
-                <span className="text-xl font-bold tracking-tight">TailorPro</span>
+                <div className="flex flex-col">
+                    <span className="text-xl font-black tracking-tight uppercase leading-none">Lucy</span>
+                    <span className="text-[10px] font-black tracking-[0.2em] text-emerald-300 uppercase leading-none">Stitches</span>
+                </div>
             </div>
 
             <nav className="flex-1 mt-6 px-4 space-y-1">

@@ -58,9 +58,9 @@ export default function LandingPage() {
             {/* Navigation */}
             <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="p-2 bg-brand-emerald rounded-xl shadow-lg shadow-emerald-900/10">
-                            <Scissors className="w-6 h-6 text-white" />
+                    <div className="flex items-center gap-3 group cursor-pointer" onClick={() => router.push('/')}>
+                        <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-emerald-900/10 group-hover:scale-110 transition-transform bg-white">
+                            <img src="/logo.png" alt="Lucy Stitches" className="w-full h-full object-cover" />
                         </div>
                         <span className="text-2xl font-black tracking-tighter text-gray-900 uppercase">Lucy Stitches</span>
                     </div>

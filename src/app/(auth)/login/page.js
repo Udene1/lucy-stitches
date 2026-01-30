@@ -39,8 +39,8 @@ export default function LoginPage() {
         <div className="min-h-screen bg-brand-emerald flex items-center justify-center p-6 font-sans">
             <div className="max-w-md w-full space-y-8 animate-in fade-in zoom-in duration-500">
                 <div className="text-center space-y-4">
-                    <div className="w-20 h-20 bg-brand-gold rounded-[2rem] flex items-center justify-center mx-auto shadow-2xl shadow-emerald-950/40 rotate-12">
-                        <Scissors className="w-10 h-10 text-white" />
+                    <div className="w-24 h-24 bg-white rounded-[2rem] flex items-center justify-center mx-auto shadow-2xl shadow-emerald-950/40 rotate-12 overflow-hidden border-4 border-brand-gold">
+                        <img src="/logo.png" alt="Logo" className="w-full h-full object-cover shadow-inner" />
                     </div>
                     <div className="space-y-1">
                         <h1 className="text-4xl font-black text-white tracking-tighter uppercase">TailorPro</h1>
