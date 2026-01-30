@@ -190,14 +190,14 @@ export default function LandingPage() {
                             </div>
                             <span className="text-lg font-black tracking-tighter text-gray-900 uppercase">Lucy Stitches</span>
                         </div>
-                        <p className="text-sm text-gray-400 font-bold uppercase tracking-widest">© 2026 TailorPro Port Harcourt</p>
+                        <p className="text-sm text-gray-400 font-bold uppercase tracking-widest">© 2026 TailorPro Onitsha</p>
                     </div>
 
                     <div className="flex gap-10">
                         <div className="text-center">
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2 text-center md:text-left">Headquarters</p>
-                            <p className="text-sm font-bold text-gray-900">123 Ada George, Port Harcourt,</p>
-                            <p className="text-sm font-bold text-gray-900">Rivers State, Nigeria.</p>
+                            <p className="text-sm font-bold text-gray-900">Onitsha, Anambra State,</p>
+                            <p className="text-sm font-bold text-gray-900">Nigeria.</p>
                         </div>
                         <div className="text-center">
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2 text-center md:text-left">Inquiries</p>

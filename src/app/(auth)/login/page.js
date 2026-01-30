@@ -44,7 +44,7 @@ export default function LoginPage() {
                     </div>
                     <div className="space-y-1">
                         <h1 className="text-4xl font-black text-white tracking-tighter uppercase">TailorPro</h1>
-                        <p className="text-emerald-100/70 font-medium">Port Harcourt's Premium Workshop Manager</p>
+                        <p className="text-emerald-100/70 font-medium">Onitsha&apos;s Premium Workshop Manager</p>
                     </div>
                 </div>
 

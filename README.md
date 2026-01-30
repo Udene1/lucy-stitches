@@ -1,6 +1,4 @@
-# TailorPro Workshop Management System
-
-Premium web application for tailoring businesses in Port Harcourt, Nigeria.
+# TailorPro is a premium, AI-powered workshop management system designed for bespoke tailoring businesses. Originally built for Lucy Stitches in Onitsha, Anambra State, Nigeria.
 
 ## 🚀 Getting Started
 

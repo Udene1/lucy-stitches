@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Lucy Stitches | Premium Tailoring",
-  description: "Bespoke traditional and contemporary luxury fashion in Port Harcourt.",
+  description: "Bespoke traditional and contemporary luxury fashion in Onitsha, Anambra State.",
   manifest: "/manifest.json",
   icons: {
     icon: "/logo.png",

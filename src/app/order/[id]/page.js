@@ -40,7 +40,7 @@ export default function PublicOrderPortal({ params }) {
                     <div className="w-16 h-16 bg-brand-emerald rounded-2xl flex items-center justify-center mx-auto shadow-lg shadow-emerald-900/10 mb-4">
                         <Scissors className="w-8 h-8 text-white" />
                     </div>
-                    <h1 className="text-2xl font-black text-emerald-950 uppercase tracking-tighter">TailorPro Port Harcourt</h1>
+                    <h1 className="text-2xl font-black text-emerald-950 uppercase tracking-tighter">TailorPro Onitsha</h1>
                     <p className="text-gray-500 font-medium">Order Status & Payment Portal</p>
                 </div>
 
@@ -133,7 +133,7 @@ export default function PublicOrderPortal({ params }) {
                     </div>
                     <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4" />
-                        Port Harcourt, Nigeria
+                        Onitsha, Anambra State, Nigeria
                     </div>
                 </div>
             </div>
