@@ -1,12 +1,13 @@
-import { NextResponse } from 'next/server'
 import { sendEmail } from '@/lib/resend'
 
-export async function POST(request) {
-    const { to, subject, type, data } = await request.json()
+export const dynamic = 'force-dynamic'
 
-    let html = ''
-    if (type === 'order_update') {
-        html = `
+export async function POST(request) {
+  const { to, subject, type, data } = await request.json()
+
+  let html = ''
+  if (type === 'order_update') {
+    html = `
       <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee;">
         <h2 style="color: #064e3b;">TailorPro Order Update</h2>
         <p>Hello ${data.clientName},</p>
@@ -16,12 +17,12 @@ export async function POST(request) {
         <p>Thank you for choosing TailorPro!</p>
       </div>
     `
-    }
+  }
 
-    try {
-        const result = await sendEmail({ to, subject, html })
-        return NextResponse.json(result)
-    } catch (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 })
-    }
+  try {
+    const result = await sendEmail({ to, subject, html })
+    return NextResponse.json(result)
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
 }
