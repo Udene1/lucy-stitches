@@ -18,6 +18,7 @@ const navigation = [
     { name: 'Clients', href: '/dashboard/clients', icon: Users },
     { name: 'Orders', href: '/dashboard/orders', icon: ShoppingBag },
     { name: 'Inventory', href: '/dashboard/inventory', icon: Package },
+    { name: 'Portfolio', href: '/dashboard/portfolio', icon: Scissors },
     { name: 'AI Suggestions', href: '/dashboard/designs', icon: Sparkles },
 ]
 
