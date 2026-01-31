@@ -1,4 +1,3 @@
-```javascript
 import { createClient } from '@/lib/supabase/server'
 import { supabaseAdmin } from '@/lib/supabase/admin'
 import { NextResponse } from 'next/server'
@@ -19,12 +18,12 @@ export async function POST(request) {
             "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
             {
                 headers: {
-                    Authorization: `Bearer ${ process.env.HUGGINGFACE_API_TOKEN } `,
+                    Authorization: `Bearer ${process.env.HUGGINGFACE_API_TOKEN}`,
                     "Content-Type": "application/json",
                     "x-wait-for-model": "true"
                 },
                 method: "POST",
-                body: JSON.stringify({ inputs: `fashion photography, masterpiece, highly detailed, nigerian traditional style, ${ prompt } ` }),
+                body: JSON.stringify({ inputs: `fashion photography, masterpiece, highly detailed, nigerian traditional style, ${prompt}` }),
             }
         )
 
@@ -37,7 +36,7 @@ export async function POST(request) {
                 const parsed = JSON.parse(responseText)
                 errorMessage = parsed.error || errorMessage
             } catch (e) {
-                errorMessage = responseText || `Error ${ response.status }: ${ response.statusText } `
+                errorMessage = responseText || `Error ${response.status}: ${response.statusText}`
             }
 
             if (response.status === 503) {
@@ -53,7 +52,7 @@ export async function POST(request) {
         const buffer = Buffer.from(await blob.arrayBuffer())
 
         // Upload to Supabase Storage using Admin client to bypass RLS
-        const fileName = `generated - ${ Date.now() }.png`
+        const fileName = `generated-${Date.now()}.png`
         const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
             .from('designs')
             .upload(fileName, buffer, { contentType: 'image/png' })
@@ -82,4 +81,3 @@ export async function POST(request) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
-```
