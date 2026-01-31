@@ -20,7 +20,7 @@ import { cn } from '@/lib/utils'
 const services = [
     {
         title: 'Classics & Office',
-        desc: 'Sharp, professional, and timeless bespoke suits and corporate wear for the modern professional.',
+        desc: 'Sophisticated blazers, corporate gowns, and timeless office ensembles for the modern woman.',
         icon: Scissors,
         color: 'text-emerald-600',
         bg: 'bg-emerald-50',
@@ -162,28 +162,28 @@ export default function LandingPage() {
                         <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mb-10">
                             <Scissors className="w-8 h-8 text-brand-emerald" />
                         </div>
-                        <h3 className="text-5xl font-black text-gray-900 uppercase tracking-tighter mb-8 italic">Classics & <br /> Office Wear</h3>
+                        <h3 className="text-5xl font-black text-gray-900 uppercase tracking-tighter mb-8 italic">Classics & <br /> Corporate Grace</h3>
                         <div className="space-y-6 text-gray-600 font-medium">
-                            <p>Command every room with attire that speaks of confidence and precision. Our Classics & Office line is designed for the professional who values timeless style and an impeccable fit.</p>
+                            <p>Step into the boardroom with confidence. Our Classics & Office line is curated for the woman who demands elegance without compromising on professionalism.</p>
                             <ul className="space-y-4">
                                 <li className="flex items-center gap-3">
                                     <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
-                                    <span>Tailored Corporate Suits & Blazers.</span>
+                                    <span>Precision-tailored Blazers & Trousers.</span>
                                 </li>
                                 <li className="flex items-center gap-3">
                                     <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
-                                    <span>Precision-cut Official Trousers & Skirts.</span>
+                                    <span>Elegant Corporate Gowns & Pencil Skirts.</span>
                                 </li>
                                 <li className="flex items-center gap-3">
                                     <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
-                                    <span>High-performance fabrics that resist wrinkles through the workday.</span>
+                                    <span>Bespoke Silk Blouses & Wrap Tops.</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div className="aspect-square bg-emerald-50 rounded-[3rem] overflow-hidden relative">
-                        <img src="/logo.png" alt="Office Wear" className="w-full h-full object-cover opacity-20 p-20 grayscale" />
-                        <div className="absolute inset-0 flex items-center justify-center text-4xl font-black text-brand-emerald/10 uppercase tracking-widest -rotate-45">Office Ready</div>
+                        <img src="/logo.png" alt="Corporate Grace" className="w-full h-full object-cover opacity-20 p-20 grayscale" />
+                        <div className="absolute inset-0 flex items-center justify-center text-4xl font-black text-brand-emerald/10 uppercase tracking-widest -rotate-45">Power Dressing</div>
                     </div>
                 </div>
             </section>
@@ -218,10 +218,10 @@ export default function LandingPage() {
                     </p>
                     <div className="inline-flex flex-col items-center gap-4">
                         <div className="p-8 bg-gray-50 rounded-[2.5rem] border border-gray-100 shadow-xl max-w-md italic font-serif text-2xl text-gray-400">
-                            "A structured emerald green buba with gold filigree patterns and a modern tailored collar..."
+                            "An elegant A-line gown in ivory silk with hand-stitched floral lace and a cathedral veil..."
                         </div>
                         <Link href="/portfolio" className="text-brand-emerald font-black uppercase tracking-widest text-sm hover:underline">
-                            See AI-Generated Samples in Portfolio →
+                            Explore Fashion Visions →
                         </Link>
                     </div>
                 </div>
