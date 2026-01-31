@@ -54,15 +54,19 @@ export default function NewClientPage() {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        if (e) e.preventDefault()
         setLoading(true)
 
         try {
+            const { data: { user } } = await supabase.auth.getUser()
+            if (!user) throw new Error('Not authenticated')
+
             const { error } = await supabase
                 .from('clients')
                 .insert([{
                     ...formData,
-                    phone: formatPhoneNumber(formData.phone)
+                    phone: formatPhoneNumber(formData.phone),
+                    user_id: user.id
                 }])
 
             if (error) throw error
