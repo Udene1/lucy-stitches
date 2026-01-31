@@ -13,7 +13,11 @@ import {
     Phone,
     CheckCircle2,
     Sparkles,
-    Zap
+    Zap,
+    Menu,
+    X,
+    Plus,
+    Minus
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -48,6 +52,7 @@ export default function LandingPage() {
     const router = useRouter()
     const [orderId, setOrderId] = useState('')
     const [isSearching, setIsSearching] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     const handleTrackOrder = (e) => {
         e.preventDefault()
@@ -74,6 +79,44 @@ export default function LandingPage() {
                         <Link
                             href="/login"
                             className="px-6 py-2.5 bg-gray-50 text-gray-900 font-bold rounded-xl text-sm hover:bg-gray-100 transition-all border border-gray-200"
+                        >
+                            Admin Login
+                        </Link>
+                    </div>
+
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        className="md:hidden p-2 text-gray-600 hover:text-brand-emerald transition-colors"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
+                </div>
+
+                {/* Mobile Navigation Overlay */}
+                <div className={cn(
+                    "fixed inset-0 top-20 bg-white z-40 transition-all duration-300 md:hidden flex flex-col p-6 gap-6",
+                    isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
+                )}>
+                    <Link
+                        href="#services"
+                        className="text-2xl font-black text-gray-900 uppercase tracking-tighter"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        Services
+                    </Link>
+                    <Link
+                        href="/portfolio"
+                        className="text-2xl font-black text-gray-900 uppercase tracking-tighter"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        Portfolio
+                    </Link>
+                    <div className="mt-auto pb-10">
+                        <Link
+                            href="/login"
+                            className="w-full flex items-center justify-center py-5 bg-brand-emerald text-white font-black rounded-2xl text-lg uppercase tracking-widest shadow-xl shadow-emerald-900/20"
+                            onClick={() => setIsMenuOpen(false)}
                         >
                             Admin Login
                         </Link>

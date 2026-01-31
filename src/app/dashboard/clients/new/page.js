@@ -8,9 +8,9 @@ import { formatPhoneNumber } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 import toast from 'react-hot-toast'
 
-const measurementFields = [
-    'Chest', 'Waist', 'Hips', 'Shoulder', 'Sleeve Length',
-    'Neck', 'Length', 'Thigh', 'Ankle', 'Knee'
+const defaultMeasurementFields = [
+    'Burst', 'Underburst', 'Half length', 'Shoulder', 'Sleeve Length',
+    'Round sleeve', 'Chest', 'Waist', 'Hips', ' Neck', 'Length', 'Thigh', 'Ankle', 'Knee'
 ]
 
 export default function NewClientPage() {
@@ -23,6 +23,8 @@ export default function NewClientPage() {
         email: '',
         measurements: {}
     })
+    const [customFields, setCustomFields] = useState([])
+    const [newFieldLabel, setNewFieldLabel] = useState('')
 
     const handleMeasurementChange = (field, value) => {
         setFormData(prev => ({
@@ -32,6 +34,23 @@ export default function NewClientPage() {
                 [field]: value
             }
         }))
+    }
+
+    const addCustomField = () => {
+        if (!newFieldLabel.trim()) return
+        if ([...defaultMeasurementFields, ...customFields].includes(newFieldLabel.trim())) {
+            toast.error('Field already exists')
+            return
+        }
+        setCustomFields([...customFields, newFieldLabel.trim()])
+        setNewFieldLabel('')
+    }
+
+    const removeCustomField = (field) => {
+        setCustomFields(customFields.filter(f => f !== field))
+        const newMeasurements = { ...formData.measurements }
+        delete newMeasurements[field]
+        setFormData({ ...formData, measurements: newMeasurements })
     }
 
     const handleSubmit = async (e) => {
@@ -139,9 +158,20 @@ export default function NewClientPage() {
                             Body Measurements (Inches)
                         </h2>
                         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                            {measurementFields.map((field) => (
-                                <div key={field} className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-500">{field}</label>
+                            {[...defaultMeasurementFields, ...customFields].map((field) => (
+                                <div key={field} className="space-y-2 relative group-input">
+                                    <div className="flex items-center justify-between">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">{field}</label>
+                                        {customFields.includes(field) && (
+                                            <button
+                                                type="button"
+                                                onClick={() => removeCustomField(field)}
+                                                className="text-red-400 hover:text-red-600 transition-colors"
+                                            >
+                                                <Minus className="w-3 h-3" />
+                                            </button>
+                                        )}
+                                    </div>
                                     <input
                                         type="number"
                                         step="0.1"
@@ -152,6 +182,28 @@ export default function NewClientPage() {
                                     />
                                 </div>
                             ))}
+
+                            {/* Add Custom Field Input */}
+                            <div className="space-y-2 md:col-span-2">
+                                <label className="text-[10px] font-black uppercase tracking-widest text-brand-gold">Add Custom Requirement</label>
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        placeholder="e.g., Ankle to Floor"
+                                        className="flex-1 px-4 py-3 bg-amber-50 border border-brand-gold/20 rounded-xl focus:ring-2 focus:ring-brand-gold outline-none text-sm font-bold"
+                                        value={newFieldLabel}
+                                        onChange={(e) => setNewFieldLabel(e.target.value)}
+                                        onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addCustomField())}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={addCustomField}
+                                        className="p-3 bg-brand-gold text-white rounded-xl hover:scale-105 transition-all shadow-lg shadow-brand-gold/20"
+                                    >
+                                        <Plus className="w-5 h-5" />
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </form>
