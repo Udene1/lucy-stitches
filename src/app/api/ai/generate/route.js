@@ -1,8 +1,10 @@
+```javascript
 import { createClient } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase/admin'
 import { NextResponse } from 'next/server'
 
 export async function POST(request) {
-    const supabase = createClient()
+    const supabase = await createClient()
     const { prompt } = await request.json()
 
     if (!prompt) {
@@ -10,16 +12,19 @@ export async function POST(request) {
     }
 
     try {
+        // Get current user for attribution
+        const { data: { user } } = await supabase.auth.getUser()
+
         const response = await fetch(
             "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
             {
                 headers: {
-                    Authorization: `Bearer ${process.env.HUGGINGFACE_API_TOKEN}`,
+                    Authorization: `Bearer ${ process.env.HUGGINGFACE_API_TOKEN } `,
                     "Content-Type": "application/json",
                     "x-wait-for-model": "true"
                 },
                 method: "POST",
-                body: JSON.stringify({ inputs: `fashion photography, masterpiece, highly detailed, nigerian traditional style, ${prompt}` }),
+                body: JSON.stringify({ inputs: `fashion photography, masterpiece, highly detailed, nigerian traditional style, ${ prompt } ` }),
             }
         )
 
@@ -32,7 +37,7 @@ export async function POST(request) {
                 const parsed = JSON.parse(responseText)
                 errorMessage = parsed.error || errorMessage
             } catch (e) {
-                errorMessage = responseText || `Error ${response.status}: ${response.statusText}`
+                errorMessage = responseText || `Error ${ response.status }: ${ response.statusText } `
             }
 
             if (response.status === 503) {
@@ -47,22 +52,26 @@ export async function POST(request) {
         const blob = await response.blob()
         const buffer = Buffer.from(await blob.arrayBuffer())
 
-        // Upload to Supabase Storage
-        const fileName = `generated-${Date.now()}.png`
-        const { data: uploadData, error: uploadError } = await supabase.storage
+        // Upload to Supabase Storage using Admin client to bypass RLS
+        const fileName = `generated - ${ Date.now() }.png`
+        const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
             .from('designs')
             .upload(fileName, buffer, { contentType: 'image/png' })
 
         if (uploadError) throw uploadError
 
-        const { data: { publicUrl } } = supabase.storage
+        const { data: { publicUrl } } = supabaseAdmin.storage
             .from('designs')
             .getPublicUrl(fileName)
 
-        // Save to DB
-        const { data: designData, error: dbError } = await supabase
+        // Save to DB using Admin client
+        const { data: designData, error: dbError } = await supabaseAdmin
             .from('designs')
-            .insert([{ prompt, image_url: publicUrl }])
+            .insert([{
+                prompt,
+                image_url: publicUrl,
+                user_id: user?.id
+            }])
             .select()
 
         if (dbError) throw dbError
@@ -73,3 +82,4 @@ export async function POST(request) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
+```
