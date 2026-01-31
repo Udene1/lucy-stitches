@@ -1,21 +1,38 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Sparkles, Send, Download, Save, History, Image as ImageIcon, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import toast from 'react-hot-toast'
+import { createClient } from '@/lib/supabase/client'
 
 export default function DesignSuggesterPage() {
     const [prompt, setPrompt] = useState('')
     const [isGenerating, setIsGenerating] = useState(false)
     const [generatedImage, setGeneratedImage] = useState(null)
 
-    const handleGenerate = () => {
+    const handleGenerate = async () => {
+        if (!prompt.trim()) return
         setIsGenerating(true)
-        // Simulated generation
-        setTimeout(() => {
-            setGeneratedImage('https://images.unsplash.com/photo-1540639134-8b696c303117?auto=format&fit=crop&q=80&w=800')
+        setGeneratedImage(null)
+
+        try {
+            const response = await fetch('/api/ai/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt })
+            })
+
+            const data = await response.json()
+            if (data.error) throw new Error(data.error)
+
+            setGeneratedImage(data.design.image_url)
+        } catch (error) {
+            console.error('Generation failed:', error)
+            toast.error(error.message || 'Failed to generate design')
+        } finally {
             setIsGenerating(false)
-        }, 3000)
+        }
     }
 
     return (
