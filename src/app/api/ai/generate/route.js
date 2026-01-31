@@ -11,7 +11,7 @@ export async function POST(request) {
 
     try {
         const response = await fetch(
-            "https://router.huggingface.co/models/runwayml/stable-diffusion-v1-5",
+            "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
             {
                 headers: {
                     Authorization: `Bearer ${process.env.HUGGINGFACE_API_TOKEN}`,
@@ -23,8 +23,20 @@ export async function POST(request) {
         )
 
         if (!response.ok) {
-            const hfError = await response.json()
-            console.error('Hugging Face Response Error:', hfError)
+            let errorMessage = 'Hugging Face API error'
+            try {
+                const contentType = response.headers.get("content-type")
+                if (contentType && contentType.includes("application/json")) {
+                    const hfError = await response.json()
+                    errorMessage = hfError.error || errorMessage
+                } else {
+                    errorMessage = await response.text()
+                }
+            } catch (e) {
+                errorMessage = response.statusText || errorMessage
+            }
+
+            console.error('Hugging Face Response Error:', errorMessage)
 
             if (response.status === 503) {
                 return NextResponse.json({
@@ -32,7 +44,7 @@ export async function POST(request) {
                 }, { status: 503 })
             }
 
-            throw new Error(hfError.error || 'Hugging Face API error')
+            throw new Error(errorMessage)
         }
 
         const blob = await response.blob()
