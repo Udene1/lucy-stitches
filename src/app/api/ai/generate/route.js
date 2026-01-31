@@ -13,14 +13,26 @@ export async function POST(request) {
         const response = await fetch(
             "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
             {
-                headers: { Authorization: `Bearer ${process.env.HUGGINGFACE_API_TOKEN}` },
+                headers: {
+                    Authorization: `Bearer ${process.env.HUGGINGFACE_API_TOKEN}`,
+                    "Content-Type": "application/json"
+                },
                 method: "POST",
                 body: JSON.stringify({ inputs: `fashion photography, highly detailed, nigerian traditional style, ${prompt}` }),
             }
         )
 
         if (!response.ok) {
-            throw new Error('HF API error')
+            const hfError = await response.json()
+            console.error('Hugging Face Response Error:', hfError)
+
+            if (response.status === 503) {
+                return NextResponse.json({
+                    error: 'Model is loading... please try again in 30 seconds.'
+                }, { status: 503 })
+            }
+
+            throw new Error(hfError.error || 'Hugging Face API error')
         }
 
         const blob = await response.blob()
