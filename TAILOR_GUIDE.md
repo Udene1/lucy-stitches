@@ -34,7 +34,17 @@ Welcome to your digital workshop! This guide explains how to use **TailorPro** t
 
 ---
 
-## 💎 4. Public Portfolio
+## 💎 4. Specialized Services & Signature Pieces
+*Lucy Stitches is known for artistic finishes. Here is how to handle them:*
+
+1. **Custom Beadwork & Embroidery**: When creating an order, use the **"Special Requirements"** or **"Description"** field to detail the pattern and stones required.
+2. **Headwraps (Gele)**: These can be added as separate inventory items or as a "Service Add-on" to an existing garment order.
+3. **Styling Consultations**: Use the **"Client Notes"** section to log style preferences and fabric sourcing decisions made during styling meetings.
+4. **Adire & Signature Prints**: Always upload a photo of the specific print/fabric to the order so the workshop can cross-check patterns during cutting.
+
+---
+
+## 🖼️ 5. Public Portfolio
 *Your digital shop window.*
 
 1. **Portfolio Manager**: Go to **Portfolio** in your dashboard.

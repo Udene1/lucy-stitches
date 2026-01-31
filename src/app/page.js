@@ -35,12 +35,12 @@ const services = [
         id: 'bridal'
     },
     {
-        title: 'AI Design Suggestions',
-        desc: 'Visualize your dream outfit with our integrated fashion AI generator.',
-        icon: Zap,
-        color: 'text-blue-600',
-        bg: 'bg-blue-50',
-        id: 'ai-design'
+        title: 'Custom Finishes',
+        desc: 'Hand-beading, custom embroidery, and personal styling to make you stand out.',
+        icon: Star,
+        color: 'text-brand-emerald',
+        bg: 'bg-brand-emerald/10',
+        id: 'finishes'
     }
 ]
 
@@ -97,7 +97,7 @@ export default function LandingPage() {
                         </h1>
                         <p className="text-xl text-gray-500 font-medium mb-12 max-w-xl leading-relaxed">
                             Experience the fusion of traditional craftsmanship and modern precision.
-                            From bespoke Agbadas to contemporary suits, we bring your fashion visions to life.
+                            From bespoke Adire gowns to contemporary corporate wear, we bring your fashion dreams to life.
                         </p>
 
                         {/* Order Tracking Bar */}
@@ -206,7 +206,45 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            <section id="ai-design" className="py-32 bg-white">
+            <section id="finishes" className="py-32 bg-white">
+                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+                    <div className="order-2 md:order-1 grid grid-cols-2 gap-4">
+                        <div className="aspect-[3/4] bg-emerald-50 rounded-3xl p-6 flex flex-col justify-end">
+                            <p className="text-xs font-black uppercase tracking-widest text-brand-emerald mb-2">Signature Piece</p>
+                            <h5 className="font-black text-gray-900 leading-tight">Hand-beaded <br />Adire Maxi</h5>
+                        </div>
+                        <div className="aspect-[3/4] bg-amber-50 rounded-3xl mt-12 p-6 flex flex-col justify-end">
+                            <p className="text-xs font-black uppercase tracking-widest text-brand-gold mb-2">Modern Twist</p>
+                            <h5 className="font-black text-gray-900 leading-tight">Ankara Print <br />Jumpsuits</h5>
+                        </div>
+                    </div>
+                    <div className="order-1 md:order-2">
+                        <div className="w-16 h-16 bg-brand-emerald/10 rounded-2xl flex items-center justify-center mb-10">
+                            <Star className="w-8 h-8 text-brand-emerald" />
+                        </div>
+                        <h3 className="text-5xl font-black text-gray-900 uppercase tracking-tighter mb-8 italic">Signature <br /> Masterpieces</h3>
+                        <div className="space-y-6 text-gray-600 font-medium">
+                            <p>Beyond basic tailoring, we offer artistic finishes that define your unique style. From the intricate placement of beads to the rhythm of our custom embroidery.</p>
+                            <ul className="space-y-4">
+                                <li className="flex items-center gap-3">
+                                    <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
+                                    <span>Intricately designed Headwraps (Gele).</span>
+                                </li>
+                                <li className="flex items-center gap-3">
+                                    <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
+                                    <span>Personal Styling & Fabric Sourcing Consultations.</span>
+                                </li>
+                                <li className="flex items-center gap-3">
+                                    <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
+                                    <span>Tailored Female Agbadas with modern silhouettes.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ai-design" className="py-32 bg-gray-50/50">
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <div className="w-20 h-20 bg-blue-50 rounded-[2rem] flex items-center justify-center mx-auto mb-10">
                         <Zap className="w-10 h-10 text-blue-600" />
