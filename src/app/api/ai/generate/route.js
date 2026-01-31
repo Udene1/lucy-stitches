@@ -11,7 +11,7 @@ export async function POST(request) {
 
     try {
         const response = await fetch(
-            "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
+            "https://router.huggingface.co/models/runwayml/stable-diffusion-v1-5",
             {
                 headers: {
                     Authorization: `Bearer ${process.env.HUGGINGFACE_API_TOKEN}`,
