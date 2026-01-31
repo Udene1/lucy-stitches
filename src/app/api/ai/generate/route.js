@@ -11,32 +11,29 @@ export async function POST(request) {
 
     try {
         const response = await fetch(
-            "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
+            "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
             {
                 headers: {
                     Authorization: `Bearer ${process.env.HUGGINGFACE_API_TOKEN}`,
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "x-wait-for-model": "true"
                 },
                 method: "POST",
-                body: JSON.stringify({ inputs: `fashion photography, highly detailed, nigerian traditional style, ${prompt}` }),
+                body: JSON.stringify({ inputs: `fashion photography, masterpiece, highly detailed, nigerian traditional style, ${prompt}` }),
             }
         )
 
         if (!response.ok) {
+            const responseText = await response.text()
+            console.error('Hugging Face Response Error:', response.status, responseText)
+
             let errorMessage = 'Hugging Face API error'
             try {
-                const contentType = response.headers.get("content-type")
-                if (contentType && contentType.includes("application/json")) {
-                    const hfError = await response.json()
-                    errorMessage = hfError.error || errorMessage
-                } else {
-                    errorMessage = await response.text()
-                }
+                const parsed = JSON.parse(responseText)
+                errorMessage = parsed.error || errorMessage
             } catch (e) {
-                errorMessage = response.statusText || errorMessage
+                errorMessage = responseText || `Error ${response.status}: ${response.statusText}`
             }
-
-            console.error('Hugging Face Response Error:', errorMessage)
 
             if (response.status === 503) {
                 return NextResponse.json({

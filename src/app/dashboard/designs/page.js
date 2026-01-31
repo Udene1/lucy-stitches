@@ -23,8 +23,17 @@ export default function DesignSuggesterPage() {
                 body: JSON.stringify({ prompt })
             })
 
-            const data = await response.json()
-            if (data.error) throw new Error(data.error)
+            const text = await response.text()
+            let data
+            try {
+                data = JSON.parse(text)
+            } catch (e) {
+                throw new Error('Server returned an invalid response. Please try again later.')
+            }
+
+            if (!response.ok || data.error) {
+                throw new Error(data.error || 'Failed to generate design')
+            }
 
             setGeneratedImage(data.design.image_url)
         } catch (error) {
