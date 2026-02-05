@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import {
     Users,
     ShoppingBag,
@@ -9,12 +9,17 @@ import {
     LayoutDashboard,
     Sparkles,
     Settings,
-    Scissors
+    Scissors,
+    LogOut,
+    User
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { createClient } from '@/lib/supabase/client'
+import { useEffect, useState } from 'react'
 
 const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+    { name: 'Bookings', href: '/dashboard/bookings', icon: ShoppingBag },
     { name: 'Clients', href: '/dashboard/clients', icon: Users },
     { name: 'Orders', href: '/dashboard/orders', icon: ShoppingBag },
     { name: 'Inventory', href: '/dashboard/inventory', icon: Package },
@@ -24,6 +29,23 @@ const navigation = [
 
 export default function Sidebar() {
     const pathname = usePathname()
+    const router = useRouter()
+    const supabase = createClient()
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        const getUser = async () => {
+            const { data: { user } } = await supabase.auth.getUser()
+            setUser(user)
+        }
+        getUser()
+    }, [supabase])
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut()
+        router.push('/login')
+        router.refresh()
+    }
 
     return (
         <div className="flex flex-col w-64 h-screen bg-brand-emerald text-white border-r border-white/10 shadow-xl overflow-y-auto">
@@ -58,7 +80,19 @@ export default function Sidebar() {
                 })}
             </nav>
 
-            <div className="p-4 mt-auto border-t border-white/10">
+            <div className="p-4 mt-auto border-t border-white/10 space-y-2">
+                {user && (
+                    <div className="px-4 py-3 bg-white/5 rounded-2xl flex items-center gap-3 border border-white/5 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center">
+                            <User className="w-4 h-4" />
+                        </div>
+                        <div className="flex flex-col overflow-hidden">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300">Admin</span>
+                            <span className="text-xs font-bold truncate text-emerald-50 truncate w-32">{user.email}</span>
+                        </div>
+                    </div>
+                )}
+
                 <Link
                     href="/dashboard/settings"
                     className="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-emerald-100/70 hover:bg-white/10 hover:text-white transition-all"
@@ -66,6 +100,14 @@ export default function Sidebar() {
                     <Settings className="w-5 h-5" />
                     Settings
                 </Link>
+
+                <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-red-100/70 hover:bg-red-900/40 hover:text-white transition-all text-left"
+                >
+                    <LogOut className="w-5 h-5" />
+                    Sign Out
+                </button>
             </div>
         </div>
     )

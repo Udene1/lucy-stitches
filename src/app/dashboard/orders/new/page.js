@@ -40,6 +40,7 @@ export default function NewOrderPage() {
                 .from('orders')
                 .insert([{
                     ...formData,
+                    price: parseFloat(formData.price), // Parse price to float
                     user_id: user.id
                 }])
 

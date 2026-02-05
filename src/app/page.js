@@ -77,6 +77,12 @@ export default function LandingPage() {
                         <Link href="#services" className="text-sm font-bold text-gray-500 hover:text-brand-emerald transition-colors">Services</Link>
                         <Link href="/portfolio" className="text-sm font-bold text-gray-500 hover:text-brand-emerald transition-colors">Portfolio</Link>
                         <Link
+                            href="/book"
+                            className="px-6 py-2.5 bg-brand-emerald text-white font-black rounded-xl text-sm hover:bg-emerald-800 transition-all shadow-lg shadow-emerald-900/10"
+                        >
+                            Book Now
+                        </Link>
+                        <Link
                             href="/login"
                             className="px-6 py-2.5 bg-gray-50 text-gray-900 font-bold rounded-xl text-sm hover:bg-gray-100 transition-all border border-gray-200"
                         >
@@ -112,10 +118,24 @@ export default function LandingPage() {
                     >
                         Portfolio
                     </Link>
-                    <div className="mt-auto pb-10">
+                    <Link
+                        href="/book"
+                        className="text-2xl font-black text-brand-emerald uppercase tracking-tighter flex items-center gap-3"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        Book Now <Sparkles className="w-6 h-6" />
+                    </Link>
+                    <div className="mt-auto pb-10 space-y-4">
+                        <Link
+                            href="/book"
+                            className="w-full flex items-center justify-center py-5 bg-brand-emerald text-white font-black rounded-2xl text-lg uppercase tracking-widest shadow-xl shadow-emerald-900/20"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Start Booking
+                        </Link>
                         <Link
                             href="/login"
-                            className="w-full flex items-center justify-center py-5 bg-brand-emerald text-white font-black rounded-2xl text-lg uppercase tracking-widest shadow-xl shadow-emerald-900/20"
+                            className="w-full flex items-center justify-center py-5 bg-gray-50 text-gray-900 font-bold rounded-2xl text-lg uppercase tracking-widest border border-gray-100"
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Admin Login
@@ -142,6 +162,23 @@ export default function LandingPage() {
                             Experience the fusion of traditional craftsmanship and modern precision.
                             From bespoke Adire gowns to contemporary corporate wear, we bring your fashion dreams to life.
                         </p>
+
+                        <div className="flex flex-col sm:flex-row gap-4 mb-16">
+                            <Link
+                                href="/book"
+                                className="px-10 py-5 bg-brand-emerald text-white font-black rounded-[2rem] hover:bg-emerald-800 transition-all shadow-2xl shadow-emerald-900/20 flex items-center justify-center gap-3 group"
+                            >
+                                <Sparkles className="w-5 h-5 text-emerald-300 group-hover:animate-pulse" />
+                                Start Your Booking
+                                <ArrowRight className="w-5 h-5" />
+                            </Link>
+                            <Link
+                                href="/portfolio"
+                                className="px-10 py-5 bg-white text-gray-900 font-black rounded-[2rem] border border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-center shadow-sm"
+                            >
+                                View Showcase
+                            </Link>
+                        </div>
 
                         {/* Order Tracking Bar */}
                         <div className="bg-white p-2 rounded-[2rem] shadow-2xl shadow-gray-200 border border-gray-100 flex flex-col md:flex-row items-center gap-2 max-w-xl">
